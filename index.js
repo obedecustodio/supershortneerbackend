@@ -4,7 +4,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const ShortUrl = require('./model')
 
-
+   
 app.use(cors())
 app.use(express.json())    
 mongoose
@@ -30,6 +30,7 @@ app.get('/urls', async (req, res) =>{
 })
 
 app.post('/url', async (req, res) =>{ 
+    console.log(`on post`)
     await ShortUrl.create({ longurl: req.body.long})  
     res.json('ok') 
  }) 
