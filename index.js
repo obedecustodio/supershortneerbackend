@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const url = require('url')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const ShortUrl = require('./model')
@@ -33,11 +34,19 @@ app.get('/urls', async (req, res) =>{
 
 
 app.post('/url', async (req, res) =>{
-
-    console.log('on post')
-    await ShortUrl.create({ longurl: req.body.long})  
+  
+  try {
+        const parsedUrl = new url.URL(req.body.long)
+           console.log('on post')
+    await ShortUrl.create({ longurl: parsedUrl})  
 
     console.log(req.body.long)
+    
+    res.json('ok')
+    } catch (error) {
+        console.log(error)
+    }
+
     
     res.json('ok')
 }) 
