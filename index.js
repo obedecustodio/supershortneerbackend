@@ -11,6 +11,7 @@ app.use(cors())
 app.use(express.json())    
 
 
+
 mongoose
     .connect('mongodb+srv://lastkingas09:FXSnJmJA2QcAdnZf@cluster0.p7b59nb.mongodb.net/?retryWrites=true&w=majority', {  
     useNewUrlParser: true,
@@ -24,6 +25,7 @@ mongoose
 .catch((err) => console.log(err)) 
   
 
+
 app.get('/', async (req, res) =>{
     res.json('oi')
 })
@@ -31,6 +33,7 @@ app.get('/urls', async (req, res) =>{
     const shortUrls = await ShortUrl.find()
     res.json(shortUrls)
 })
+
 
 
 app.post('/url', async (req, res) =>{
@@ -47,8 +50,6 @@ app.post('/url', async (req, res) =>{
         console.log(error)
     }
 
-    
-    res.json('ok')
 }) 
 
  app.get('/url/:short', async (req, res)=>{
